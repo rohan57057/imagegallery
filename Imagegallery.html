@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Image Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .gallery-item {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+            animation-delay: calc(var(--index) * 0.1s);
+        }
+        
+        .filter-active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .image-container {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .image-container:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-12">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Dynamic Image Gallery</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto">Explore stunning images across different categories. Click on any image to view it in full size.</p>
+        </header>
+        
+        <div class="filter-buttons flex justify-center gap-4 mb-8 flex-wrap">
+            <button class="filter-btn px-4 py-2 rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors filter-active" data-filter="all">All</button>
+            <button class="filter-btn px-4 py-2 rounded-full border border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition-colors" data-filter="nature">Nature</button>
+            <button class="filter-btn px-4 py-2 rounded-full border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-colors" data-filter="animals">Animals</button>
+            <button class="filter-btn px-4 py-2 rounded-full border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white transition-colors" data-filter="cars">Cars</button>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="gallery">
+            <!-- Nature Images -->
+            <div class="gallery-item group image-container rounded-xl overflow-hidden shadow-md bg-white" data-category="nature">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/169e13ae-67c5-4423-95ad-e71616a971cf.png" alt="Serene mountain landscape at sunrise with pink and orange hues reflecting off a glacial lake" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105">
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800">Mountain Sunrise</h3>
+                    <p class="text-sm text-gray-500 mt-1">Nature</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item group image-container rounded-xl overflow-hidden shadow-md bg-white" data-category="nature">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5bc1356f-4e0c-4a2e-b623-5851a7d8e357.png" alt="Lush green rainforest with sunlight filtering through the dense canopy and vibrant tropical plants" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105">
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800">Rainforest</h3>
+                    <p class="text-sm text-gray-500 mt-1">Nature</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item group image-container rounded-xl overflow-hidden shadow-md bg-white" data-category="nature">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/638b2391-124e-4255-aab9-cf75ec7694a5.png" alt="Dramatic coastal cliffs overlooking a turbulent ocean at sunset with golden light" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105">
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800">Ocean Cliffs</h3>
+                    <p class="text-sm text-gray-500 mt-1">Nature</p>
+                </div>
+            </div>
+            
+            <!-- Animal Images -->
+            <div class="gallery-item group image-container rounded-xl overflow-hidden shadow-md bg-white" data-category="animals">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4b0ab33a-7384-4c79-a43d-af0843380289.png" alt="Majestic lion resting on a rock in the savanna during golden hour, looking directly at the camera" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105">
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800">Savanna King</h3>
+                    <p class="text-sm text-gray-500 mt-1">Animals</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item group image-container rounded-xl overflow-hidden shadow-md bg-white" data-category="animals">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/19582e03-c0c2-425d-8117-c47eb355b13e.png" alt="Playful dolphins jumping out of turquoise ocean water under bright sunlight" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105">
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800">Ocean Acrobats</h3>
+                    <p class="text-sm text-gray-500 mt-1">Animals</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item group image-container rounded-xl overflow-hidden shadow-md bg-white" data-category="animals">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ca7f5461-6dd3-4117-b386-5a5c30dfade4.png" alt="Colorful parrot perched on a branch in a dense jungle with vibrant green foliage" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105">
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800">Tropical Beauty</h3>
+                    <p class="text-sm text-gray-500 mt-1">Animals</p>
+                </div>
+            </div>
+            
+            <!-- Car Images -->
+            <div class="gallery-item group image-container rounded-xl overflow-hidden shadow-md bg-white" data-category="cars">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d3747fce-40c7-45c3-9b55-542ef8082262.png" alt="Shiny black classic sports car parked on a coastal road overlooking the ocean at sunset" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105">
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800">Classic Cruiser</h3>
+                    <p class="text-sm text-gray-500 mt-1">Cars</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item group image-container rounded-xl overflow-hidden shadow-md bg-white" data-category="cars">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/03cc7777-464b-451e-8e20-bf247418a04e.png" alt="Modern silver electric sports car parked in an urban setting with skyscrapers in the background" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105">
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800">Urban Future</h3>
+                    <p class="text-sm text-gray-500 mt-1">Cars</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item group image-container rounded-xl overflow-hidden shadow-md bg-white" data-category="cars">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/37fd45c5-60d3-44c0-bde6-ab2af358bc9c.png" alt="Vintage red convertible classic car driving through a desert highway with mountains in the distance" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105">
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800">Desert Dream</h3>
+                    <p class="text-sm text-gray-500 mt-1">Cars</p>
+                </div>
+            </div>
+            
+            <!-- Mixed Category Items -->
+            <div class="gallery-item group image-container rounded-xl overflow-hidden shadow-md bg-white" data-category="animals">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8515d0b0-1756-45c6-984c-7a6eccfe7c40.png" alt="Family of elephants walking across the savanna at golden hour with dust clouds rising behind them" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105">
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800">Gentle Giants</h3>
+                    <p class="text-sm text-gray-500 mt-1">Animals</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item group image-container rounded-xl overflow-hidden shadow-md bg-white" data-category="nature">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/82ab9fd9-3793-474f-8615-7bbe94617ad5.png" alt="Crystal clear alpine lake surrounded by snow-capped mountains under a blue sky with perfect reflections" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105">
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800">Alpine Mirror</h3>
+                    <p class="text-sm text-gray-500 mt-1">Nature</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item group image-container rounded-xl overflow-hidden shadow-md bg-white" data-category="cars">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f36a735d-6235-4be9-9f20-09329887f40b.png" alt="Blue luxury sports car on display in a showroom with dramatic lighting and glass walls" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105">
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800">Showroom Shine</h3>
+                    <p class="text-sm text-gray-500 mt-1">Cars</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lightbox Modal -->
+        <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
+            <div class="relative max-w-4xl w-full p-4">
+                <button id="close-lightbox" class="absolute top-4 right-4 text-white text-3xl hover:text-gray-300">&times;</button>
+                <div class="bg-white rounded-lg overflow-hidden">
+                    <img id="lightbox-image" src="" alt="" class="w-full max-h-[80vh] object-contain">
+                    <div class="p-4 bg-gray-100">
+                        <h3 id="lightbox-title" class="font-bold text-xl text-gray-800"></h3>
+                        <p id="lightbox-category" class="text-sm text-gray-600 mt-1"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('filter-active'));
+                    button.classList.add('filter-active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Filter items
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Lightbox functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxCategory = document.getElementById('lightbox-category');
+            const closeLightbox = document.getElementById('close-lightbox');
+            
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('img');
+                    const title = item.querySelector('h3').textContent;
+                    const category = item.querySelector('p').textContent;
+                    
+                    lightboxImage.src = img.src;
+                    lightboxImage.alt = img.alt;
+                    lightboxTitle.textContent = title;
+                    lightboxCategory.textContent = category;
+                    
+                    lightbox.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            closeLightbox.addEventListener('click', () => {
+                lightbox.classList.add('hidden');
+                document.body.style.overflow = '';
+            });
+            
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
